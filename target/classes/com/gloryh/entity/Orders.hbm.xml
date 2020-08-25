@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.gloryh.entity.Orders" table="orders">
+        <id name="id" type="java.lang.Integer">
+            <column name="id"></column>
+            <generator class="identity"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name"></column>
+        </property>
+        <!-- 在many-to-one此标签下使用延迟加载用proxy 和 no-proxy，不开启延迟加载使用false -->
+        <!-- lazy="false" 不开启延迟加载，级联出相关联的表 -->
+        <!-- lazy="proxy" 无论调用方法是否需要访问customer的成员变量，都会发送SQL语句查询Customer  -->
+        <!-- lazy="no-proxy" 当调用方法需要访问customer的成员变量时，发送SQL语句查询Customer，否则不查询 -->
+        <many-to-one name="customer" class="com.gloryh.entity.Customer" column="c_id" lazy="proxy">
+        </many-to-one>
+
+    </class>
+</hibernate-mapping>

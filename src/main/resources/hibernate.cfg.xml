@@ -1,0 +1,42 @@
+<?xml- version="1.0".encoding="UTF-8"?>
+        <!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+        <session-factory>
+                <!-- 数据源配置 -->
+                <property name="connection.username">admin</property>
+                <property name="connection.password">123</property>
+                <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+                <property name="connection.url">jdbc:mysql://localhost:3305/test?useUnicode=true&amp;characterEncoding=utf8&amp;serverTimezone=UTC&amp;allowMultiQueries=true</property>
+
+                <!-- c3p0数据库连接池 -->
+                <property name="hibernate.c3p0.acquire_increment">10</property>
+                <property name="hibernate.c3p0.idle_test_period">10000</property>
+                <property name="hibernate.c3p0.timeout">5000</property>
+                <property name="hibernate.c3p0.max_size">30</property>
+                <property name="hibernate.c3p0.min_size">5</property>
+                <property name="hibernate.c3p0.max_statements">10</property>
+
+                <!-- 数据库方言：根据数据库类型（mysql还是oracle）识别sql语句类型 -->
+                <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+                <!-- 打印SQL语句 -->
+                <property name="show_sql">true</property>
+
+                <!-- 格式化SQL语句 -->
+                <property name="format_sql">true</property>
+                
+                <!-- 是否自动生成数据库 -->
+                <property name="hibernate.hbm2ddl.auto"></property>
+
+                <!-- 注册实体关系映射文件 -->
+                <mapping resource="com/gloryh/entity/People.hbm.xml"></mapping>
+                <mapping resource="com/gloryh/entity/Customer.hbm.xml"></mapping>
+                <mapping resource="com/gloryh/entity/Orders.hbm.xml"></mapping>
+                <mapping resource="com/gloryh/entity/Account.hbm.xml"></mapping>
+                <mapping resource="com/gloryh/entity/Course.hbm.xml"></mapping>
+
+        </session-factory>
+
+</hibernate-configuration>

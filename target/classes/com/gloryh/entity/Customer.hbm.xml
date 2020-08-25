@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.gloryh.entity">
+    <class name="Customer" table="customer" >
+        <id name="id" type="java.lang.Integer">
+            <column name="id"></column>
+            <generator class="identity"></generator>
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name"></column>
+        </property>
+        <!-- 设置延迟加载 (默认为开启状态) 添加字段 lazy="true" 会只加载我们需要的数据而不加载级联数据 -->
+        <!-- 若未开启延迟加载，添加字段lazy="false" 在执行SQL时会默认进行级联查询，获取所有相关数据 -->
+        <!-- 当添加的字段为 lazy="extra" 时，会使用一种比延迟加载更懒（智能）的加载方式  -->
+        <set name="orders" table="orders" lazy="extra" inverse="true" cascade="delete">
+            <key column="c_id"></key>
+            <one-to-many class="Orders"></one-to-many>
+        </set>
+
+    </class>
+</hibernate-mapping>
